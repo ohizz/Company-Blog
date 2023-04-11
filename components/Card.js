@@ -7,7 +7,7 @@ const Card = ({post}) => {
       <h2 className="font-head mt-2 text-2xl uppercase block font-semibold tracking-tight lg:leading-snug text-brand-primary w-50 lg:text-5xl text-black-500">{post.title}</h2>
       <div className="flex ">
      {post.categories.map((category) => (
-        <div className="uppercase font-normal text-slate-400 text-sm tracking-wide mr-3">
+        <div key={post.id} className="uppercase font-normal text-slate-400 text-sm tracking-wide mr-3">
       {category && (<Tag key={category.id} title={category.title}/>)}
       </div>
     ))}

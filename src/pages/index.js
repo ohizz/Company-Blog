@@ -1,15 +1,13 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { Lora } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import { getClient } from '../../lib/sanity.server'
 import Link from 'next/link'
 import groq from 'groq'
 import Card from '../../components/Card'
 
-const lora = Lora({ subsets: ['latin'] })
 
-const Home = ({posts, result}) => {
+const Home = ({posts}) => {
   return (
     <>
       <Head>
@@ -19,7 +17,7 @@ const Home = ({posts, result}) => {
       </Head>
       <main className='font-body grid md:grid-cols-2 gap-6 grid-cols-1'>
     {posts?.map((post) => (
-      <div className="">
+      <div key={post.id}>
        <Card post={post}/>
        <Link key={post.id} href={`/posts/${encodeURIComponent(post.slug.current)}`}>
         <button className='border-2 border-gray-900 text-slate-900 text-xs p-2 tracking-wide hover:bg-gray-300 active:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 '>Read More</button>
@@ -53,22 +51,5 @@ export async function getStaticProps ({preview = false}) {
  }
 }
 
-let lastId = ''
 
-async function fetchNextPage() {
-  if (lastId === null) {
-    return []
-  }
-  const {result} = await fetch(
-    groq`*[_type == "article" && _id > $lastId] | order(_id) [0...100] {
-      _id, title, body
-    }`, {lastId})
-  
-  if (result.length > 0) {
-    lastId = result[result.length - 1]._id
-  } else {
-    lastId = null // Reached the end
-  }
-  return result
-}
 export default Home;
