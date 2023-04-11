@@ -1,6 +1,6 @@
 import { urlForImage } from "../lib/sanity";
 import Tag from "./Tag";
-
+import Image from 'next/image'
 const Card = ({post}) => {
  return(
   <div className="max-w-4xl lg:max-w-md">

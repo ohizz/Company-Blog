@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from '@/styles/Home.module.css'
 import { getClient } from '../../lib/sanity.server'
 import Link from 'next/link'
@@ -19,7 +18,7 @@ const Home = ({posts}) => {
     {posts?.map((post) => (
       <div key={post.id}>
        <Card post={post}/>
-       <Link key={post.id} href={`/posts/${encodeURIComponent(post.slug.current)}`}>
+       <Link href={`/posts/${encodeURIComponent(post.slug.current)}`}>
         <button className='border-2 border-gray-900 text-slate-900 text-xs p-2 tracking-wide hover:bg-gray-300 active:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 '>Read More</button>
       </Link>
        </div>

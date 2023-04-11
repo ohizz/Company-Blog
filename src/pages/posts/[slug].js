@@ -1,6 +1,5 @@
 import groq from "groq"
 import Tag from "../../../components/Tag"
-import Image from 'next/image'
 import { PortableText } from "@portabletext/react"
 import { urlForImage } from "../../../lib/sanity"
 import { getClient } from "../../../lib/sanity.server"
@@ -35,7 +34,7 @@ const Post = ({post}) => {
     <hr className="my-6"/>
     <div className="my-2 font-body flex flex-row align-center flex-cols" >
       <div className="flex align-center">
-      <Image className=" object-cover h-9 w-9 mr-2 rounded-full"
+      <img className=" object-cover h-9 w-9 mr-2 rounded-full"
    alt={username + 'avatar'}
    src={urlForImage(authorImage)}/>
    <p className="text-gray-800 dark:text-gray-400 text-sm uppercase self-center">Posted - {username}</p>
